@@ -24,8 +24,9 @@ exports.deleteUserById = function (id) {
   return UserModel.findByIdAndDelete(id);
 };
 
-exports.updateUser = async function (id,body) {
-  return await UserModel.findByIdAndUpdate(id,body);
+exports.updateUser = async function (id, body) {
+  return UserModel.findByIdAndUpdate(id, body, { new: true });
 };
+
 
 

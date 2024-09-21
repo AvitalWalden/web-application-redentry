@@ -7,19 +7,25 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isAuth, setIsAuth] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const storedAuth = localStorage.getItem('isAuth');
+        if (storedAuth) {
+          setIsAuth(JSON.parse(storedAuth));
+        }
+        setIsLoading(false);
+      }, []);
     const navigate = useNavigate();
 
     async function authUser() {
         try {
-    console.log("authhhh")
-
             const {data}  = await axios.get("http://localhost:3000/api/users/auth", {
                 withCredentials: true,
             });
-            console.log(data)
             if (data.success) {
                 setIsAuth(true);
                 setUser(data.user);
+                localStorage.setItem('isAuth', JSON.stringify(true));
             }
         } catch (error) {
             navigate('/');
@@ -38,6 +44,8 @@ export const UserProvider = ({ children }) => {
             if (isSuccess) {
                 setIsAuth(false);
                 setUser(null);
+                localStorage.removeItem('isAuth');
+
             }
         } catch (error) {
             return error
@@ -45,7 +53,6 @@ export const UserProvider = ({ children }) => {
 
     }
     useEffect(() => {
-        console.log("ggggggggggggggggggggg")
         authUser();
     }, []);
 
@@ -55,6 +62,7 @@ export const UserProvider = ({ children }) => {
         user,
         logOut,
         setUser,
+        isLoading 
     };
     return (
         <UserContext.Provider value={value}>

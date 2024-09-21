@@ -1,7 +1,7 @@
 const connectToDb = require("./src/utils/connectTodb.js");
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const config = require('./src/config/config')
+const config = require('./src/config/config.js')
 const usersRouter = require("./src/routes/users.router.js");
 
 const cors = require("cors");

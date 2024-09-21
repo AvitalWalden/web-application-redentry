@@ -5,7 +5,6 @@ const {
   updateUser,
   register,
   loginUser,
-  getCurrentUser,
   deleteUser,
   authUser,
   logOut,
@@ -19,10 +18,9 @@ const { createSessionSchema } = require("../schema/auth.schema.js");
 
 const router = Router();
 
-console.log("auttttttttttttttttttttttttttt")
 router.get("/auth", authUser);
 
-router.put("/updateUser/:id", updateUser);
+router.put("/updateUser/:id", validateResource(createUserSchema), updateUser);
 
 router.delete("/deleteUser/:id", deleteUser);
 
@@ -33,9 +31,6 @@ router.get("/getUserById/:id", getUserById);
 router.post("/signup", validateResource(createUserSchema), register);
 
 router.post("/login", validateResource(createSessionSchema), loginUser);
-
-
-router.get("/me", getCurrentUser);
 
 router.get("/logout", logOut)
 

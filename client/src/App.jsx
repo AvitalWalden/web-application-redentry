@@ -3,28 +3,50 @@ import './App.css';
 import LogIn from "./pages/LogIn";
 import { UserContext } from './pages/UserContext';
 import Home from "./pages/Home";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import LogOut from "./pages/LogOut";
 import Profile from "./pages/Profile";
 
-// import LogOut from "./pages/LogOut";
 function App() {
-  const { isAuth } = useContext(UserContext);
+  const { isAuth ,isLoading} = useContext(UserContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Layout component for authenticated users
+  const AuthLayout = () => (
+    <>
+      <Home openModal={openModal} />
+      <Outlet />
+    </>
+  );
+  if (isLoading) {
+    return <div>Loading...</div>; // או כל מסך טעינה אחר שתרצה
+  }
+
 
   return (
     <div>
-      {isAuth && <Home />}
       <Routes>
-        <Route path="/" element={<LogIn />} />
-        {isAuth && <Route path="/profile" element={<Profile />} />}
-        {isAuth && <Route path="/logout" element={<LogOut />} />}
+        {/* Route for signin page */}
+        <Route path="/signin" element={
+          isAuth ? <Navigate to="/" replace /> : <LogIn />
+        } />
 
+        {/* Routes for authenticated users */}
+        <Route element={isAuth ? <AuthLayout /> : <Navigate to="/signin" replace />}>
+          <Route path="/" element={<></>} /> {/* Empty element for home route */}
+          <Route path="/profile" element={<Profile isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />} />
+          <Route path="/logout" element={<LogOut />} />
+        </Route>
+
+        {/* Catch-all route */}
+        <Route path="*" element={<Navigate to={isAuth ? "/" : "/signin"} replace />} />
       </Routes>
-    </div >
+    </div>
   );
 }
 
-
 export default App;
-
-

@@ -40,13 +40,10 @@ function LogIn() {
         setLoginError(data.message);
         return;
       }
-      console.log(data)
-
       await setIsAuth(true)
       await setUser(data)
-      console.log(isAuth)
 
-      navigate('/home');
+      navigate('/');
     } catch (error) {
       console.log(error.response.data[0]?.message || "An error occurred");
       setLoginError(error.response.data[0]?.message || "An error occurred");

@@ -3,11 +3,17 @@ import logo from "../images/redentry-Logo.png"
 import { UserContext } from './UserContext';
 import { Disclosure, DisclosureButton, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-function Home() {
+function Home({ openModal }) {
 
     const { user } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const goToProfile = () => {
+        openModal();
+        navigate('/profile');
+    };
 
     return (
         <div>
@@ -52,9 +58,9 @@ function Home() {
                                     className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                                 >
                                     <MenuItem>
-                                        <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                                        <a onClick={goToProfile} className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                                             Your Profile
-                                        </Link>
+                                        </a>
                                     </MenuItem>
                                     <MenuItem>
                                         <Link to="/logOut" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">

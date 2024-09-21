@@ -1,5 +1,4 @@
 const { object, string } = require("zod");
-
 exports.createUserSchema = object({
   body: object({
     user_name: string({
