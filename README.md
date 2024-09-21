@@ -1,4 +1,4 @@
-# web--application-redentry
+# web-application-redentry
 Running the project:
 Opening the terminal
 1. cd client -> npm install -> npm run dev.
