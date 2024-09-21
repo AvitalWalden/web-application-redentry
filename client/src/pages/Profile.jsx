@@ -32,7 +32,6 @@ function Profile({ isModalOpen, setIsModalOpen }) {
             setIsModalOpen(false);
 
         } catch (error) {
-            console.log(error.response.data[0]?.message || "An error occurred");
             setError(error.response.data[0]?.message || "An error occurred");
         }
     };
@@ -40,11 +39,9 @@ function Profile({ isModalOpen, setIsModalOpen }) {
     const handleDelete = async () => {
         try {
             const response = await axios.delete(`http://localhost:3000/api/users/deleteUser/${user._id}`);
-            console.log('User deleted:', response.data);
             logOut();
             navigate('/signin');
         } catch (error) {
-            console.log(error.response.data[0]?.message || "An error occurred");
             setError(error.response.data[0]?.message || "An error occurred");
         }
     };
@@ -87,7 +84,7 @@ function Profile({ isModalOpen, setIsModalOpen }) {
                                         name="user_password"
                                         value={values.user_password}
                                         onChange={handleChange}
-                                        id="user_password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+                                        id="user_password" placeholder="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
                                 </div>
                                 <div className="flex justify-center">
                                     {error && <p className={`block mb-2 mt-2 text-sm font-medium ${error === "The user has been successfully updated!" ? 'text-red-600 dark:text-red-400' : 'text-red-600 dark:text-red-400'}`} >{error}</p>}

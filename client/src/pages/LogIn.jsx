@@ -45,7 +45,6 @@ function LogIn() {
 
       navigate('/');
     } catch (error) {
-      console.log(error.response.data[0]?.message || "An error occurred");
       setLoginError(error.response.data[0]?.message || "An error occurred");
     }
   }

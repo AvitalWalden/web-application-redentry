@@ -2,8 +2,10 @@ import React, { useContext, useState } from 'react'
 import logo from "../images/redentry-Logo.png"
 import { UserContext } from '../context/UserContext';
 import { Disclosure, DisclosureButton, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, useNavigate } from 'react-router-dom';
+import { FaRegUserCircle   } from "react-icons/fa";
+
 
 function Home({ openModal }) {
 
@@ -46,11 +48,7 @@ function Home({ openModal }) {
                                     <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                         <span className="absolute -inset-1.5" />
                                         <span className="sr-only">Open user menu</span>
-                                        <img
-                                            alt=""
-                                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                            className="h-8 w-8 rounded-full"
-                                        />
+                                        <FaRegUserCircle   className="h-8 w-8 rounded-full bg-white" />
                                     </MenuButton>
                                 </div>
                                 <MenuItems
