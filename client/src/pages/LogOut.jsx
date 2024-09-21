@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from './UserContext';
+import { UserContext } from '../context/UserContext';
 
 function LogOut() {
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ function LogOut() {
     async function handleLogOut() {
         try {
            await logOut();
-           navigate('/');
+           navigate('/signin');
         } catch (error) {
             return error
         }

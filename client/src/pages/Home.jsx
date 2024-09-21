@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import logo from "../images/redentry-Logo.png"
-import { UserContext } from './UserContext';
+import { UserContext } from '../context/UserContext';
 import { Disclosure, DisclosureButton, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, useNavigate } from 'react-router-dom';

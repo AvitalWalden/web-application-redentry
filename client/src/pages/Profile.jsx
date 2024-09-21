@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { UserContext } from './UserContext';
+import { UserContext } from '../context/UserContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,17 +14,6 @@ function Profile({ isModalOpen, setIsModalOpen }) {
         user_email: user?.user_email,
         user_name: user?.user_name
     });
-    // useEffect(() => {
-    //     let timer;
-    //     if (error || success) {
-    //         timer = setTimeout(() => {
-    //             setError("");
-    //             setSuccess("");
-    //         }, 4000);
-    //     }
-    //     return () => clearTimeout(timer);
-    // }, [error, success]);
-
 
     const handleChange = (e) => {
         setValues({
@@ -53,7 +42,7 @@ function Profile({ isModalOpen, setIsModalOpen }) {
             const response = await axios.delete(`http://localhost:3000/api/users/deleteUser/${user._id}`);
             console.log('User deleted:', response.data);
             logOut();
-            navigate('/');
+            navigate('/signin');
         } catch (error) {
             console.log(error.response.data[0]?.message || "An error occurred");
             setError(error.response.data[0]?.message || "An error occurred");

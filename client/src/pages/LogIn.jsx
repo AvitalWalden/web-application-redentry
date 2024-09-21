@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import logo from "../images/redentry-Logo.png"
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from './UserContext';
+import { UserContext } from '../context/UserContext';
 
 function LogIn() {
   const { setIsAuth, setUser, user ,isAuth} = useContext(UserContext);
@@ -135,30 +135,3 @@ function LogIn() {
 }
 
 export default LogIn
-
-
-
-{/* <div className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <div className="px-4 py-2">
-              רדאנטרי חברת אבטחת מידע
-              בעולם שבו איומי הסייבר מופנים אל כלל המגזרים והתעשיות,
-              אנחנו ברד-אנטרי מזהים את סיכוני האבטחה, עוזרים לכם לקבל החלטות עסקיות נבונות, וכך מאפשרים לכם לצמצם את שטח ההתקפה באופן דיגיטלי, פיזי ואנושי.
-
-              בואו יחד איתנו לבדוק את עד כמה מעטפת ההגנה שלכם חזקה בפני האיומים ההולכים וגדלים. רדאנטרי משתמשת בכלים המתקדמים ביותר על מנת לסייע ללקוחות שלנו במניעת מתקפות סייבר, ביניהם מבדקי חדירות יסודיים הנועדו לבחון את חולשות מערך ההגנה שלכם מנקודת מבטו של תוקף זדוני.
-
-              צוות המומחים שלנו יעזור לכם להגיע להחלטות העסקיות הנכונות עבורכם ולצמצם את הסיכונים האפשריים.
-
-              הצטרפו אלינו במשמיתנו להפוך את עולם הסייבר למקום בטוח יותר.
-
-
-            </div>
-          </div> */}
-{/*   
-          <div className="flex items-center justify-between mt-4">
-              <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
-  
-              <a href="#" className="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline">or login
-                  with email</a>
-  
-              <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
-          </div> */}

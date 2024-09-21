@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+const config = require('../config/config')
 
 async function  connectToDb() {
-  const uri = "mongodb+srv://n025711858:a1b2c3d4@cluster0.6hbd8.mongodb.net/db";
+  const uri = config.DB_URI;
   try {
       await mongoose.connect(uri)
       console.log("db connected")

@@ -8,18 +8,19 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isAuth, setIsAuth] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
+
     useEffect(() => {
         const storedAuth = localStorage.getItem('isAuth');
         if (storedAuth) {
-          setIsAuth(JSON.parse(storedAuth));
+            setIsAuth(JSON.parse(storedAuth));
         }
         setIsLoading(false);
-      }, []);
-    const navigate = useNavigate();
+    }, []);
 
     async function authUser() {
         try {
-            const {data}  = await axios.get("http://localhost:3000/api/users/auth", {
+            const { data } = await axios.get("http://localhost:3000/api/users/auth", {
                 withCredentials: true,
             });
             if (data.success) {
@@ -28,8 +29,9 @@ export const UserProvider = ({ children }) => {
                 localStorage.setItem('isAuth', JSON.stringify(true));
             }
         } catch (error) {
-            navigate('/');
-
+            setIsAuth(false);
+            setUser(null);
+            navigate('/signin');
             return error;
         }
     }
@@ -62,7 +64,7 @@ export const UserProvider = ({ children }) => {
         user,
         logOut,
         setUser,
-        isLoading 
+        isLoading
     };
     return (
         <UserContext.Provider value={value}>
